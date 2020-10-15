@@ -146,7 +146,6 @@
 </c:set>
 
 <c:forEach items="${sessionScope.ShoppingCart}" var="item">
-
                     <tr>
                         <td>
                             <div class="media">
@@ -171,6 +170,7 @@
                         </td>
                         <td>
                             <h5>$${item.total}</h5>
+                            <c:set var="subtotal" value="${subtotal+item.total}"/>
                         </td>
                         <td>
                             <a href="RemoveProduct?productId=${item.product.id}"><button type="button" class="btn btn-danger">Remove</button></a>

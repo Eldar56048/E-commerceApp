@@ -1,4 +1,7 @@
 package com.company.Servlet;
 
-public class RemoveWishList {
+import javax.servlet.http.HttpServlet;
+
+public class RemoveWishList extends HttpServlet {
+
 }

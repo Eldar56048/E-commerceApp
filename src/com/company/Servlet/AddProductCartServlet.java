@@ -1,5 +1,6 @@
 package com.company.Servlet;
 
+import com.company.models.Functions;
 import com.company.models.Item;
 import com.company.models.Product;
 import com.company.repositories.ProductRepository;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class AddProductCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Functions functions = new Functions();
         ProductRepository productRepository = new ProductRepository();
         Product product = null;
         long id= Integer.parseInt(req.getParameter("id"));
@@ -32,7 +34,7 @@ public class AddProductCartServlet extends HttpServlet {
         else{
             items = new ArrayList<>();
         }
-        if (isItemInCart(items, product)==false) {
+        if (functions.isItemInCart(items, product)==false) {
             items.add(new Item(product, 1));
         }
 
@@ -40,10 +42,5 @@ public class AddProductCartServlet extends HttpServlet {
         resp.sendRedirect("cart.jsp");
     }
 
-    public static boolean isItemInCart(ArrayList<Item> items, Product product){
-        for(Item item : items) {
-            if(item.getProduct().getId()==product.getId())return true;
-        }
-        return false;
-    }
+
 }

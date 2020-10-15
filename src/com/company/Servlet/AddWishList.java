@@ -1,5 +1,6 @@
 package com.company.Servlet;
 
+import com.company.models.Functions;
 import com.company.models.Item;
 import com.company.models.Product;
 import com.company.repositories.ProductRepository;
@@ -18,16 +19,11 @@ import java.util.Queue;
 
 public class AddWishList extends HttpServlet {
 
-    public static boolean isWishInCart(ArrayList<Product> products, Product product){
-        for(Product product1 : products) {
-            if(product1.getId()==product.getId())return true;
-        }
-        return false;
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductRepository productRepository = new ProductRepository();
+        Functions functions = new Functions();
         Product product = null;
         long id= Integer.parseInt(req.getParameter("id"));
         try {
@@ -43,7 +39,7 @@ public class AddWishList extends HttpServlet {
         else{
             products = new ArrayList<>();
         }
-        if (isWishInCart(products, product)==false) {
+        if (functions.isWishInCart(products, product)==false) {
             products.add(product);
         }
 
