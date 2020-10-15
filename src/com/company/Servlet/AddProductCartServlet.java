@@ -32,13 +32,10 @@ public class AddProductCartServlet extends HttpServlet {
         else{
             items = new ArrayList<>();
         }
-        if (!isItemInCart(items, product)) {
+        if (isItemInCart(items, product)==false) {
             items.add(new Item(product, 1));
-            req.setAttribute("MessageFromCart","Product added into ShoppingCart");
         }
-        else{
-            req.setAttribute("MessageFromCart","This product is already in Shopping cart");
-        }
+
         httpSession.setAttribute("ShoppingCart",items);
         resp.sendRedirect("cart.jsp");
     }

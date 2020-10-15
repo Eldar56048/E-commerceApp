@@ -253,7 +253,7 @@
                   <span class="ti-bag"></span>
                   <p class="hover-text">add to bag</p>
                 </a>
-                <a href="" class="social-info">
+                <a href="AddWishList?id=${product.id}" class="social-info">
                   <span class="lnr lnr-heart"></span>
                   <p class="hover-text">Wishlist</p>
                 </a>
