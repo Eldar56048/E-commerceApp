@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0" >
+
+
+    <servlet>
+        <servlet-name>Product</servlet-name>
+        <servlet-class>com.company.Servlet.ProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Product</servlet-name>
+        <url-pattern>/Product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.company.Servlet.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShoppingCart</servlet-name>
+        <servlet-class>com.company.Servlet.AddProductCartServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShoppingCart</servlet-name>
+        <url-pattern>/AddCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddQuantity</servlet-name>
+        <servlet-class>com.company.Servlet.AddQuantityServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddQuantity</servlet-name>
+        <url-pattern>/AddQuantity</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReduceQuantity</servlet-name>
+        <servlet-class>com.company.Servlet.ReduceQuantityServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ReduceQuantity</servlet-name>
+        <url-pattern>/ReduceQuantity</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveProduct</servlet-name>
+        <servlet-class>com.company.Servlet.RemoveProductFromCartServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RemoveProduct</servlet-name>
+        <url-pattern>/RemoveProduct</url-pattern>
+    </servlet-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>Product</welcome-file>
+    </welcome-file-list>
+</web-app>
