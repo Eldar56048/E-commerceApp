@@ -80,6 +80,16 @@
         <url-pattern>/AddWishList</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>RemoveWishList</servlet-name>
+        <servlet-class>com.company.Servlet.RemoveWishList</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RemoveWishList</servlet-name>
+        <url-pattern>/RemoveWishList</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>Product</welcome-file>
     </welcome-file-list>

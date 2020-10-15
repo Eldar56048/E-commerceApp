@@ -31,19 +31,22 @@ public class AddWishList extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        ArrayList<Product> products = null;
+        ArrayList<Product> wishList = null;
         HttpSession httpSession = req.getSession();
         if(httpSession.getAttribute("WishList")!=null) {
-            products = (ArrayList<Product>) httpSession.getAttribute("WishList");
+            wishList = (ArrayList<Product>) httpSession.getAttribute("WishList");
         }
         else{
-            products = new ArrayList<>();
+            wishList = new ArrayList<>();
         }
-        if (functions.isWishInCart(products, product)==false) {
-            products.add(product);
+        if (functions.isWishInCart(wishList, product)==false) {
+            wishList.add(product);
         }
-
-        httpSession.setAttribute("WishList",products);
+        Integer size = wishList.size();
+        Cookie cookie = new Cookie("WishListSize",size.toString());
+        cookie.setMaxAge(5*60);
+        resp.addCookie(cookie);
+        httpSession.setAttribute("WishList",wishList);
         resp.sendRedirect("wishList.jsp");
     }
 }

@@ -1,16 +1,15 @@
 package com.company.Servlet;
 
+import com.company.models.Functions;
 import com.company.models.Item;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReduceQuantityServlet extends HttpServlet {
+    Functions functions = new Functions();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("productId"));
@@ -22,6 +21,10 @@ public class ReduceQuantityServlet extends HttpServlet {
                     item.setQuantity(item.getQuantity() - 1);
                 }
         }
+        Cookie cookie = functions.getCookieByName(req.getCookies(),"CartSize");
+        Integer size = items.size();
+        cookie = new Cookie("CartSize",size.toString());
+        resp.addCookie(cookie);
         httpSession.setAttribute("ShoppingCart",items);
         resp.sendRedirect("cart.jsp");
     }

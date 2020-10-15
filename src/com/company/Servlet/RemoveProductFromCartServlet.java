@@ -3,10 +3,7 @@ package com.company.Servlet;
 import com.company.models.Item;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,6 +18,10 @@ public class RemoveProductFromCartServlet extends HttpServlet {
                 items.remove(i);
             }
         }
+        Integer size = items.size();
+        Cookie cookie = new Cookie("CartSize",size.toString());
+        cookie.setMaxAge(5*60);
+        resp.addCookie(cookie);
         httpSession.setAttribute("ShoppingCart",items);
         resp.sendRedirect("cart.jsp");
     }

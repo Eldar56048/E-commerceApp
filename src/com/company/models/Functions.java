@@ -1,5 +1,6 @@
 package com.company.models;
 
+import javax.servlet.http.Cookie;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -38,6 +39,13 @@ public class Functions {
             }
         }
         return categoryProducts;
+    }
+
+    public Cookie getCookieByName(Cookie[] cookies, String name){
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals(name))return cookie;
+        }
+        return null;
     }
 
 
