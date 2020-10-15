@@ -2,6 +2,7 @@ package com.company.Servlet;
 
 import com.company.models.Functions;
 import com.company.models.Product;
+import com.company.models.ProductPriceComparator;
 import com.company.repositories.ProductRepository;
 
 import javax.servlet.ServletException;
@@ -11,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeSet;
 
 public class ProductServlet extends HttpServlet {
+    ProductPriceComparator priceComparator = new ProductPriceComparator();
     Functions functions = new Functions();
     ProductRepository productRepository = new ProductRepository();
     @Override
@@ -35,11 +38,14 @@ public class ProductServlet extends HttpServlet {
         req.setAttribute("Categories",categories);
 
         if(req.getParameter("Category")!=null){
-            req.setAttribute("products",functions.getCategoryProducts(products,req.getParameter("Category")));
+            ArrayList<Product> categoryProducts =functions.getCategoryProducts(products,req.getParameter("Category"));
+            Collections.sort(categoryProducts,priceComparator);
+            req.setAttribute("products",categoryProducts);
             req.setAttribute("Category",req.getParameter("Category")+" ");
         }
 
         else {
+            Collections.sort(products,priceComparator);
             req.setAttribute("products", products);
             req.setAttribute("Category","All ");
         }
