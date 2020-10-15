@@ -3,6 +3,7 @@ package com.company.models;
 import javax.servlet.http.Cookie;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class Functions {
     public int countSizeCart(ArrayList<Item> items){
@@ -17,7 +18,7 @@ public class Functions {
         return wishList.size();
     }
 
-    public boolean isWishInCart(ArrayList<Product> products, Product product){
+    public boolean isWishInCart(Queue<Product> products, Product product){
         for(Product product1 : products) {
             if(product1.getId()==product.getId())return true;
         }

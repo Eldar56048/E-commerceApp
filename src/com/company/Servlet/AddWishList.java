@@ -12,9 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Queue;
+import java.util.*;
 
 
 public class AddWishList extends HttpServlet {
@@ -31,13 +29,13 @@ public class AddWishList extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        ArrayList<Product> wishList = null;
+        Queue<Product> wishList = null;
         HttpSession httpSession = req.getSession();
         if(httpSession.getAttribute("WishList")!=null) {
-            wishList = (ArrayList<Product>) httpSession.getAttribute("WishList");
+            wishList = (Queue<Product>) httpSession.getAttribute("WishList");
         }
         else{
-            wishList = new ArrayList<>();
+            wishList = new LinkedList<>();
         }
         if (functions.isWishInCart(wishList, product)==false) {
             wishList.add(product);
