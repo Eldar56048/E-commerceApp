@@ -4,10 +4,7 @@ import com.company.models.User;
 import com.company.repositories.UserRepository;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -25,12 +22,15 @@ public class LoginServlet extends HttpServlet {
         }
         HttpSession httpSession = req.getSession();
         if(user==null){
-            httpSession.setAttribute("MessageLogin","Invalid Username or Password");
-            resp.sendRedirect(req.getContextPath()+"/login.jsp");
+            Cookie cookie = new Cookie("MessageLogin","Error");
+            cookie.setMaxAge(60);
+            resp.addCookie(cookie);
+            resp.sendRedirect("login.jsp");
         }
+
         else{
             httpSession.setAttribute("User",user);
-            resp.sendRedirect(req.getContextPath()+"/user.jsp");
+            resp.sendRedirect("Product");
         }
     }
 }

@@ -41,11 +41,10 @@
                         </div>
 
                         <div class="col-md-12 form-group">
-                            <%
-                            if(request.getSession().getAttribute("MessageLogin")!=null){
-                                out.print("<h3>"+request.getSession().getAttribute("MessageLogin")+"</h3>");
-                            }
-                            %>
+                            <c:if test="${cookie.MessageLogin!=null}">
+                                <h3>Invalid Username or Password</h3>
+                                ${cookie.MessageLogin.maxAge=0}
+                            </c:if>
                             <h3></h3>
                             <button type="submit" value="submit" class="primary-btn">Log In</button>
                         </div>

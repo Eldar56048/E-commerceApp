@@ -63,8 +63,19 @@
                         <li class="nav-item active"><a class="nav-link" href="login.jsp">Login</a></li>
                         <li class="nav-item active"><a class="nav-link" href="wishList.jsp">Wish List(${cookie.WishListSize.value})</a></li>
                         <li class="nav-item active"><a class="nav-link" href="compare.jsp">Compare List(${cookie.CompareMapSize.value})</a></li>
-
-                        <li></li>
+                        <c:if test="${sessionScope.User!=null}">
+                            <li class="nav-item active">You signed as ${sessionScope.User.username}</li>
+                            <li class="nav-item active"><a class="nav-link" href="Logout">Logout</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.User.name.equals(\"admin\")}">
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">Admin</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="addProduct.jsp">Add Product</a></li>
+                                </ul>
+                            </li>
+                        </c:if>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="cart.jsp" class="cart"><span class="ti-bag">(${cookie.CartSize.value})</span></a></li>

@@ -111,6 +111,57 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.company.Servlet.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddProductDB</servlet-name>
+        <servlet-class>com.company.Servlet.AddProductAdmin</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddProductDB</servlet-name>
+        <url-pattern>/AddProductDB</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>AboutProduct</servlet-name>
+        <servlet-class>com.company.Servlet.AboutProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AboutProduct</servlet-name>
+        <url-pattern>/AboutProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveProductAdmin</servlet-name>
+        <servlet-class>com.company.Servlet.RemoveProductAdmin</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RemoveProductAdmin</servlet-name>
+        <url-pattern>/RemoveProductAdmin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateProduct</servlet-name>
+        <servlet-class>com.company.Servlet.UpdateProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateProduct</servlet-name>
+        <url-pattern>/UpdateProduct</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>Product</welcome-file>
     </welcome-file-list>

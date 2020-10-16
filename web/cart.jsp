@@ -105,5 +105,6 @@
         </div>
     </div>
 </section>
+
 <!--================End Cart Area =================-->
 <%@include file="footer.jsp"%> <%--There we include footer--%>

@@ -1,6 +1,7 @@
 package com.company.models;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.Part;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
@@ -55,6 +56,17 @@ public class Functions {
             return true;
         }
         return false;
+    }
+
+    public String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length()-1);
+            }
+        }
+        return "";
     }
 
 }

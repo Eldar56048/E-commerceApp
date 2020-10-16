@@ -18,6 +18,22 @@ public class Product {
         this.photoUrl = photoUrl;
     }
 
+    public Product(long id, String name, double price, String structure, String category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.structure = structure;
+        this.category = category;
+    }
+
+    public Product(String name, double price, String structure, String category, String photoUrl) {
+        this.name = name;
+        this.price = price;
+        this.structure = structure;
+        this.category = category;
+        this.photoUrl = photoUrl;
+    }
+
     public String getCategory() {
         return category;
     }

@@ -1,3 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    HttpSession httpSession = request.getSession();
+if(httpSession.getAttribute("User")!=null){
+    User user = (User) httpSession.getAttribute("User");
+}
+else {
+    response.sendRedirect("Product");
+}
+%>
 <%@ page import="com.company.models.User" %><%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -11,11 +21,6 @@
     <title>Title</title>
 </head>
 <body>
-<%
-if(request.getSession().getAttribute("User")!=null){
-    User user = (User) request.getSession().getAttribute("User");
-    out.println("<h1>"+user.getName()+" "+user.getSurname()+" "+user.getUsername()+" "+user.getRole()+" "+user.getBirthday()+"</h1>");
-}
-%>
+${sessionScope.User.name}
 </body>
 </html>

@@ -25,10 +25,10 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void add(Product entity) {
+    public void add(Product entity) throws SQLException {
         try {
             String sql = "INSERT INTO product(name, price, structure, category, photoUrl) " +
-                    "VALUES(?, ?, ?, ?, ?, ?)";
+                    "VALUES(?, ?, ?, ?, ?)";
             PreparedStatement stmt = dbrepo.getConnection().prepareStatement(sql);
             stmt.setString(1, entity.getName());
             stmt.setDouble(2, entity.getPrice());
@@ -37,53 +37,23 @@ public class ProductRepository implements IProductRepository {
             stmt.setString(5, entity.getPhotoUrl());
             stmt.execute();
         } catch (SQLException ex) {
-            throw new BadRequestException("Cannot run SQL statement: " + ex.getMessage());
+            throw new SQLException(ex);
         }
     }
 
     @Override
     public void update(Product entity) {
-        String sql = "UPDATE product " +
-                "SET ";
-        int c = 0;
-        if (entity.getName() != null) {
-            sql += "name=?, "; c++;
-        }
-        if (entity.getPrice()>0) {
-            sql += "price=?, "; c++;
-        }
-        if (entity.getStructure() != null) {
-            sql += "structure=?, "; c++;
-        }
-        if (entity.getCategory() != null) {
-            sql += "category=?, "; c++;
-        }
-        if (entity.getPhotoUrl() != null) {
-            sql += "photoUrl=?, "; c++;
-        }
-
-        sql = sql.substring(0, sql.length() - 2);
-        sql += " WHERE name = ?";
+        String sql = "UPDATE  product SET name=?, price= ?, structure = ?, category = ? where id=?";
         try {
-            int i = 1;
             PreparedStatement stmt = dbrepo.getConnection().prepareStatement(sql);
-
-            if (entity.getPrice() >0) {
-                stmt.setDouble(i++, entity.getPrice());
-            }
-            if (entity.getStructure() != null) {
-                stmt.setString(i++, entity.getStructure());
-            }
-            if (entity.getCategory() != null) {
-                stmt.setString(i++, entity.getCategory());
-            }
-            if (entity.getPhotoUrl() != null) {
-                stmt.setString(i++, entity.getPhotoUrl());
-            }
-            stmt.setString(i++, entity.getName());
+            stmt.setString(1,entity.getName());
+            stmt.setDouble(2,entity.getPrice());
+            stmt.setString(3,entity.getCategory());
+            stmt.setString(4,entity.getCategory());
+            stmt.setInt(5, (int) entity.getId());
             stmt.execute();
         } catch (SQLException ex) {
-            throw new BadRequestException("Cannot run SQL statement: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -92,6 +62,7 @@ public class ProductRepository implements IProductRepository {
         try {
             String sql = "Delete from product WHERE id = ?";
             PreparedStatement stmt = dbrepo.getConnection().prepareStatement(sql);
+            stmt.setInt(1, (int) entity.getId());
             stmt.execute();
         } catch (SQLException ex) {
             throw new BadRequestException("Cannot run SQL statement: " + ex.getMessage());
