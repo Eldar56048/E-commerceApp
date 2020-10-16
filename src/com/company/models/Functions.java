@@ -49,6 +49,4 @@ public class Functions {
         return null;
     }
 
-
-
 }

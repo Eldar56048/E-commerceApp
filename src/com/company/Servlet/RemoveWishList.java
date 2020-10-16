@@ -29,6 +29,7 @@ public class RemoveWishList extends HttpServlet {
         cookie.setMaxAge(5*60);
         resp.addCookie(cookie);
         httpSession.setAttribute("WishList",wishList);
+        httpSession.setMaxInactiveInterval(60);
         resp.sendRedirect("wishList.jsp");
     }
 }

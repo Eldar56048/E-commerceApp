@@ -49,6 +49,9 @@
                             <td>
                                 <a href="RemoveWishList?productId=${product.id}"><button type="button" class="btn btn-danger">Remove</button></a>
                             </td>
+                            <td>
+                                <a href="AddCart?id=${product.id}"><button type="button" class="btn btn-success">Success</button></a>
+                            </td>
                         </tr>
                     </c:forEach>
                     <tr class="out_button_area">

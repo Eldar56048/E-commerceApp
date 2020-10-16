@@ -23,6 +23,7 @@ public class RemoveProductFromCartServlet extends HttpServlet {
         cookie.setMaxAge(5*60);
         resp.addCookie(cookie);
         httpSession.setAttribute("ShoppingCart",items);
+        httpSession.setMaxInactiveInterval(60);
         resp.sendRedirect("cart.jsp");
     }
 }

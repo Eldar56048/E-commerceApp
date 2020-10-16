@@ -20,6 +20,7 @@ public class AddQuantityServlet extends HttpServlet {
                 item.setQuantity(item.getQuantity()+1);
         }
         httpSession.setAttribute("ShoppingCart",items);
+        httpSession.setMaxInactiveInterval(60);
         resp.sendRedirect("cart.jsp");
     }
 }

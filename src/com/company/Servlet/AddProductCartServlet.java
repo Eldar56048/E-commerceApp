@@ -10,8 +10,10 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class AddProductCartServlet extends HttpServlet {
+    Functions functions = new Functions();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Functions functions = new Functions();
@@ -39,6 +41,7 @@ public class AddProductCartServlet extends HttpServlet {
         cookie.setMaxAge(5*60);
         resp.addCookie(cookie);
         httpSession.setAttribute("ShoppingCart",items);
+        httpSession.setMaxInactiveInterval(60);
         resp.sendRedirect("Product");
     }
 

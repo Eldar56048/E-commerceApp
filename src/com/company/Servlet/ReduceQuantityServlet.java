@@ -26,6 +26,7 @@ public class ReduceQuantityServlet extends HttpServlet {
         cookie = new Cookie("CartSize",size.toString());
         resp.addCookie(cookie);
         httpSession.setAttribute("ShoppingCart",items);
+        httpSession.setMaxInactiveInterval(60);
         resp.sendRedirect("cart.jsp");
     }
 }
