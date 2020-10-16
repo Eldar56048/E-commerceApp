@@ -3,6 +3,7 @@ package com.company.models;
 import javax.servlet.http.Cookie;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Queue;
 
 public class Functions {
@@ -47,6 +48,13 @@ public class Functions {
             if(cookie.getName().equals(name))return cookie;
         }
         return null;
+    }
+
+    public boolean isProductInMap(Map<Integer,Product> productMap,int id){
+        if(productMap.get(id)!=null){
+            return true;
+        }
+        return false;
     }
 
 }

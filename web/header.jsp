@@ -61,7 +61,10 @@
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item active"><a class="nav-link" href="Product">Home</a></li>
                         <li class="nav-item active"><a class="nav-link" href="login.jsp">Login</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="wishList.jsp">Wish List</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="wishList.jsp">Wish List(${cookie.WishListSize.value})</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="compare.jsp">Compare List(${cookie.CompareMapSize.value})</a></li>
+
+                        <li></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="cart.jsp" class="cart"><span class="ti-bag">(${cookie.CartSize.value})</span></a></li>

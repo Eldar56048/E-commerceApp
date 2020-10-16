@@ -90,6 +90,27 @@
         <url-pattern>/RemoveWishList</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AddCompare</servlet-name>
+        <servlet-class>com.company.Servlet.AddCompareServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddCompare</servlet-name>
+        <url-pattern>/AddCompare</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveCompare</servlet-name>
+        <servlet-class>com.company.Servlet.RemoveCompareServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RemoveCompare</servlet-name>
+        <url-pattern>/RemoveCompare</url-pattern>
+    </servlet-mapping>
+
+
     <welcome-file-list>
         <welcome-file>Product</welcome-file>
     </welcome-file-list>

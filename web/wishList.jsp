@@ -50,7 +50,7 @@
                                 <a href="RemoveWishList?productId=${product.id}"><button type="button" class="btn btn-danger">Remove</button></a>
                             </td>
                             <td>
-                                <a href="AddCart?id=${product.id}"><button type="button" class="btn btn-success">Success</button></a>
+                                <a href="AddCart?id=${product.id}"><button type="button" class="btn btn-success">Add to Cart</button></a>
                             </td>
                         </tr>
                     </c:forEach>
