@@ -1,3 +1,7 @@
+<%@ page import="com.company.models.Functions" %><%
+    Functions functions = new Functions();
+    functions.count(request,response);
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.company.models.Product" %>

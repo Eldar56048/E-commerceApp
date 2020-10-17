@@ -14,12 +14,7 @@ public class LoginServlet extends HttpServlet {
         UserRepository userRepository = new UserRepository();
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        User user = null;
-        try {
-            user = userRepository.getUserByUsernameAndPassword(username,password);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        User user = userRepository.getUserByUsernameAndPassword(username,password);
         HttpSession httpSession = req.getSession();
         if(user==null){
             Cookie cookie = new Cookie("MessageLogin","Error");

@@ -162,6 +162,17 @@
         <url-pattern>/UpdateProduct</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>RegisterUser</servlet-name>
+        <servlet-class>com.company.Servlet.AddUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegisterUser</servlet-name>
+        <url-pattern>/RegisterUser</url-pattern>
+    </servlet-mapping>
+
+
     <welcome-file-list>
         <welcome-file>Product</welcome-file>
     </welcome-file-list>

@@ -1,7 +1,6 @@
 package com.company.models;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
@@ -68,5 +67,21 @@ public class Functions {
         }
         return "";
     }
+
+    public void count(HttpServletRequest req, HttpServletResponse resp){
+        Cookie[] cookies = req.getCookies();
+        Cookie cookie = null;
+        for(Cookie cookie1 : cookies){
+            if(cookie1.getName().equals("counter"))cookie = cookie1;
+        }
+        if(cookie == null){
+            cookie = new Cookie("counter","0");
+        }
+        int count = Integer.parseInt(cookie.getValue())+1;
+        cookie.setValue(String.valueOf(count));
+        cookie.setMaxAge(5*60);
+        resp.addCookie(cookie);
+    }
+
 
 }

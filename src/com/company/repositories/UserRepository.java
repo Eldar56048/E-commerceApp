@@ -4,13 +4,8 @@ import com.company.models.User;
 import com.company.repositories.interfaces.IDBRepository;
 import com.company.repositories.interfaces.IUserRepository;
 import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.ServerErrorException;
-import jakarta.ws.rs.core.Response;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,11 +22,11 @@ public class UserRepository implements IUserRepository {
             stmt.setString(2, entity.getSurname());
             stmt.setString(3, entity.getUsername());
             stmt.setString(4, entity.getPassword());
-            stmt.setDate(5, entity.getBirthday());
+            stmt.setDate(5, new java.sql.Date(entity.getBirthday().getTime()));
             stmt.setString(6, entity.getRole());
             stmt.execute();
         } catch (SQLException ex) {
-            throw new BadRequestException("Cannot run SQL statement: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -70,7 +65,7 @@ public class UserRepository implements IUserRepository {
                 stmt.setString(i++, entity.getPassword());
             }
             if (entity.getBirthday() != null) {
-                stmt.setDate(i++, entity.getBirthday());
+                stmt.setDate(i++, (Date) entity.getBirthday());
             }
             stmt.setString(i++, entity.getUsername());
 
@@ -110,12 +105,13 @@ public class UserRepository implements IUserRepository {
             }
             return users;
         } catch (SQLException ex) {
-            throw new ServerErrorException("Cannot run SQL statement: " + ex.getSQLState(), Response.Status.INTERNAL_SERVER_ERROR);
+            ex.printStackTrace();
         }
+        return null;
     }
 
     @Override
-    public User queryOne(String sql) throws SQLException { // ОРМ ????
+    public User queryOne(String sql)  { // ОРМ ????
         try {
             Statement stmt = dbrepo.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -130,7 +126,7 @@ public class UserRepository implements IUserRepository {
                 );
             }
         } catch (SQLException ex) {
-            throw new SQLException(ex);
+            ex.printStackTrace();
         }
         return null;
     }
@@ -140,13 +136,13 @@ public class UserRepository implements IUserRepository {
         return queryOne(sql);
     }
     @Override
-    public User getUserByUsernameAndPassword(String username,String password) throws SQLException {
+    public User getUserByUsernameAndPassword(String username,String password) {
         String sql = "SElECT * FROM users WHERE username = '"+username+"' AND password = '"+password+"'";
         return queryOne(sql);
     }
 
-    public User getUserByUsername(String username) throws SQLException {
-            String sql = "SELECT * FROM users WHERE username = "+username;
+    public User getUserByUsername(String username){
+            String sql = "SELECT * FROM users WHERE username = '"+username+"'";
             return queryOne(sql);
     }
 }

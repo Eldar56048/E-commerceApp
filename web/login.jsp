@@ -25,7 +25,7 @@
                     <div class="hover">
                         <h4>New to our website?</h4>
                         <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-                        <a class="primary-btn" href="registration.html">Create an Account</a>
+                        <a class="primary-btn" href="register.jsp">Create an Account</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,18 @@
                         <div class="col-md-12 form-group">
                             <c:if test="${cookie.MessageLogin!=null}">
                                 <h3>Invalid Username or Password</h3>
-                                ${cookie.MessageLogin.maxAge=0}
+                                <%for(Cookie cookie : request.getCookies())
+                                {
+                                    if(cookie.getName().equals("MessageLogin")){
+                                        cookie.setMaxAge(0);
+                                        response.addCookie(cookie);
+                                    }
+                                }
+                                %>
+                            </c:if>
+                            <c:if test="${sessionScope.MessageAddUser!=null}">
+                                <h3>${sessionScope.MessageAddUser}</h3>
+                                ${sessionScope.remove("MessageAddUser")}
                             </c:if>
                             <h3></h3>
                             <button type="submit" value="submit" class="primary-btn">Log In</button>
