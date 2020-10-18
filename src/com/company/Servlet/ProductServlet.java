@@ -18,7 +18,12 @@ import java.util.TreeSet;
 public class ProductServlet extends HttpServlet {
     ProductPriceComparator priceComparator = new ProductPriceComparator();
     Functions functions = new Functions();
-    ProductRepository productRepository = new ProductRepository();
+    ProductRepository productRepository = null;
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArrayList<Product> products = null;

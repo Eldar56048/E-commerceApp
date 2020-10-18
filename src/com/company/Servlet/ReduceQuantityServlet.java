@@ -9,7 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReduceQuantityServlet extends HttpServlet {
-    Functions functions = new Functions();
+    Functions functions = null;
+
+    @Override
+    public void init() throws ServletException {
+        functions = new Functions();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("productId"));

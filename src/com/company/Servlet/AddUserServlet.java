@@ -12,7 +12,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AddUserServlet extends HttpServlet {
-    UserRepository userRepository = new UserRepository();
+    UserRepository userRepository = null;
+
+    @Override
+    public void init() throws ServletException {
+        userRepository = new UserRepository();
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();

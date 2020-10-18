@@ -12,7 +12,13 @@ import java.sql.SQLException;
 
 
 public class UpdateProductServlet extends HttpServlet {
-    ProductRepository productRepository = new ProductRepository();
+    ProductRepository productRepository = null;
+
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));

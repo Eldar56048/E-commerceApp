@@ -36,6 +36,8 @@
 
 </c:set>
 
+<c:if test="${pageContext.session.maxInactiveInterval==60}"></c:if>
+
 <c:forEach items="${sessionScope.ShoppingCart}" var="item">
                     <tr>
                         <td>

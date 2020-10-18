@@ -16,11 +16,14 @@ import java.util.*;
 
 
 public class AddWishList extends HttpServlet {
-
+    ProductRepository productRepository = null;
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductRepository productRepository = new ProductRepository();
         Functions functions = new Functions();
         Product product = null;
         long id= Integer.parseInt(req.getParameter("id"));

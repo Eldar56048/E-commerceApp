@@ -9,6 +9,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginServlet extends HttpServlet {
+    UserRepository userRepository = null;
+    @Override
+    public void init() throws ServletException {
+        userRepository = new UserRepository();
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserRepository userRepository = new UserRepository();

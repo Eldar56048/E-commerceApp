@@ -20,9 +20,15 @@ import java.sql.SQLException;
 
 @MultipartConfig
 public class AddProductAdmin extends HttpServlet {
+
+    ProductRepository productRepository = null;
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductRepository productRepository = new ProductRepository();
         String productName = req.getParameter("productName");
         double productPrice = Integer.parseInt(req.getParameter("productPrice"));
         String productStructure = req.getParameter("productStructure");

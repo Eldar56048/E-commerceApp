@@ -14,20 +14,26 @@ import java.util.Map;
 import java.util.Queue;
 
 public class AddCompareServlet extends HttpServlet {
+    ProductRepository productRepository = null;
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductRepository productRepository = new ProductRepository();
         Functions functions = new Functions();
         Product product = null;
-        long id= Integer.parseInt(req.getParameter("id"));
+        long id= Integer.parseInt(req.getParameter("id"));//there i get parameter id
         try {
-            product = productRepository.getProductByID(id);
+            product = productRepository.getProductByID(id);//there i fill product form db
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         Map<Integer,Product> compareMap = null;
-        HttpSession httpSession = req.getSession();
-        if(httpSession.getAttribute("CompareMapList")!=null) {
+        HttpSession httpSession = req.getSession();//there i get session
+        if(httpSession.getAttribute("CompareMapList")!=null) {//there i check that attribute named
+            // CompareMapList not equal null
             compareMap = (Map<Integer,Product>) httpSession.getAttribute("CompareMapList");
         }
         else{

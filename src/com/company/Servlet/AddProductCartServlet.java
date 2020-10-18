@@ -13,11 +13,16 @@ import java.util.ArrayList;
 import java.util.Queue;
 
 public class AddProductCartServlet extends HttpServlet {
+
+    ProductRepository productRepository = null;
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
     Functions functions = new Functions();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Functions functions = new Functions();
-        ProductRepository productRepository = new ProductRepository();
         Product product = null;
         long id= Integer.parseInt(req.getParameter("id"));
         try {

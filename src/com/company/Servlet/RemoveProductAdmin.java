@@ -12,9 +12,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class RemoveProductAdmin extends HttpServlet {
+    ProductRepository productRepository = null;
+    @Override
+    public void init() throws ServletException {
+        productRepository = new ProductRepository();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductRepository productRepository = new ProductRepository();
         int id = Integer.parseInt(req.getParameter("id"));
         String path = "C:/Users/DELL/IdeaProjects/E-commerce App/web/";
         Product product = null;
